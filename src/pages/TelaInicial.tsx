@@ -1,15 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import InputText from "../components/InputText";
 import { Ionicons } from "@expo/vector-icons";
-
+const logo = require("../../assets/menu2.svg");
 
 const TelaInicial = () => {
   const [login, setLogin] = useState("");
@@ -26,22 +20,8 @@ const TelaInicial = () => {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Image src="../../assets/"  />
-        <Text style={styles.logo}>IFmenu</Text>
+        <Image source={logo} />
         <View style={styles.inputArea}>
-          <InputText
-            setter={setLogin}
-            value={login}
-            title="Login"
-            placeholder="Digite seu login"
-          />
-          <InputText
-            setter={setSenha}
-            value={senha}
-            title="Senha"
-            placeholder="Digite sua senha"
-            password
-          />
           <Text
             style={{
               ...styles.invalidLogin,
@@ -86,6 +66,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   main: {
+    alignItems: "center",
     width: "80%",
     backgroundColor: "white",
     borderRadius: 20,
