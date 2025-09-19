@@ -1,19 +1,34 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import InputText from "../components/InputText";
+import { useState } from "react";
+const backgroundLight = require("../../assets/backgroundpattern-light.png");
+const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 
 const Home = () => {
+  const [mode, setMode] = useState("dark");
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={mode === "dark" ? backgroundDark : backgroundLight}
+      resizeMode="repeat"
+      style={styles.container}
+    >
       <View style={styles.main}>
         <Text style={styles.text}>Seja bem vindo, Aderbal!</Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 export default Home;
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     flex: 1,
     height: "100%",
     backgroundColor: "#a3a3ff",

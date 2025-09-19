@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import InputText from "../components/InputText";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import ChangeThemeBtn from "../components/ChangeThemeBtn";
 const logo = require("../../assets/menu2.svg");
 const google = require("../../assets/google.png");
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
@@ -17,16 +18,6 @@ const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 
 const TelaInicial = () => {
   const [mode, setMode] = useState("dark");
-  const [login, setLogin] = useState("");
-  const [senha, setSenha] = useState("");
-  const [disableMessage, setDiseble] = useState(true);
-  const toLogin = () => {
-    if (login === "Aderbal" && senha === "123456") {
-      navigation.navigate("Home");
-    } else {
-      setDiseble(false);
-    }
-  };
   const navigation = useNavigation<any>();
   return (
     <ImageBackground
@@ -88,31 +79,57 @@ const TelaInicial = () => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.btn} onPress={toLogin}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            width: "84%",
+            marginTop: "auto",
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              height: 3,
+              backgroundColor: mode === "dark" ? "#f0f0f0" : "#52cc62",
+            }}
+          />
+          <View>
+            <Text
+              style={{
+                width: 70,
+                textAlign: "center",
+                fontSize: 20,
+                fontWeight: "bold",
+                color: mode === "dark" ? "#f0f0f0" : "#52cc62",
+              }}
+            >
+              Login
+            </Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              height: 3,
+              backgroundColor: mode === "dark" ? "#f0f0f0" : "#52cc62",
+            }}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
           <Image source={google} style={styles.btn_img} />
           <Text style={styles.btnText}>Entrar com Google</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={{
-          ...styles.themeButton,
-          backgroundColor: "#f0f0f0",
-        }}
-        onPress={() => setMode(mode === "dark" ? "light" : "dark")}
-      >
-        <MaterialIcons
-          name="dark-mode"
-          size={32}
-          color="black"
-          style={{ display: mode !== "dark" ? "none" : "flex" }}
-        />
-        <Entypo
-          name="light-up"
-          size={24}
-          color="black"
-          style={{ display: mode === "dark" ? "none" : "flex" }}
-        />
-      </TouchableOpacity>
+      <ChangeThemeBtn
+        mode={mode}
+        setMode={setMode}
+        extraStyles={{ position: "absolute", top: 10, right: 10 }}
+      />
     </ImageBackground>
   );
 };
@@ -129,7 +146,7 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: "row",
     backgroundColor: "#fefefe",
-    marginTop: "auto",
+    marginTop: 20,
     marginBottom: 32,
     borderWidth: 2,
     borderColor: "#afafaf",
@@ -151,6 +168,7 @@ const styles = StyleSheet.create({
   main: {
     alignItems: "center",
     width: "80%",
+    maxWidth: 420,
     borderRadius: 20,
     minHeight: "50%",
     shadowColor: "#1f1f1f",
@@ -180,7 +198,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     borderRadius: "50%",
-    backgroundColor: "#616161",
     position: "relative",
     top: -84,
     paddingVertical: 10,
@@ -197,18 +214,5 @@ const styles = StyleSheet.create({
     top: -120,
     width: "90%",
     gap: 10,
-  },
-  themeButton: {
-    alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    borderWidth: 2,
-    borderColor: "#4e4e4e",
-    justifyContent: "center",
-    height: 40,
-    width: 40,
-    borderRadius: "50%",
-    position: "absolute",
-    top: 10,
-    right: 10,
   },
 });
