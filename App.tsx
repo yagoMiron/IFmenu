@@ -12,9 +12,17 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={TelaInicial}
-          options={{ headerTransparent: true, title: "" }}
+          options={{
+            headerShown: false,
+          }}
         />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,13 +1,26 @@
 import { Image, StyleSheet, View } from "react-native";
+import ChangeThemeBtn from "./ChangeThemeBtn";
+import { SimpleLineIcons } from "@expo/vector-icons";
 const logo = require("../../assets/menu2.svg");
 
 type Props = {
   mode: string;
+  setMode: (mode: string) => void;
 };
 
-const Header = ({ mode }: Props) => {
+const Header = ({ mode, setMode }: Props) => {
   return (
-    <View>
+    <View
+      style={{
+        ...styles.header,
+        backgroundColor: mode === "dark" ? "#616161" : "#ffffff",
+      }}
+    >
+      <SimpleLineIcons
+        name="logout"
+        size={28}
+        color={mode === "dark" ? "#f0f0f0" : "#0f0f0f"}
+      />
       <View
         style={{
           ...styles.logo,
@@ -16,6 +29,7 @@ const Header = ({ mode }: Props) => {
       >
         <Image source={logo} />
       </View>
+      <ChangeThemeBtn mode={mode} setMode={setMode} />
     </View>
   );
 };
@@ -23,13 +37,27 @@ const Header = ({ mode }: Props) => {
 export default Header;
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    height: 73,
+    marginBottom: 80,
+    alignItems: "center",
+    padding: 20,
+    borderBottomWidth: 2,
+    borderColor: "#666",
+  },
   logo: {
     borderRadius: "50%",
     backgroundColor: "#616161",
+    borderColor: "#666",
     position: "relative",
-    top: -84,
+    borderBottomWidth: 2,
+    top: 30,
     paddingVertical: 10,
-    height: 160,
+    paddingTop: 14,
+    height: 140,
     alignItems: "center",
     paddingHorizontal: 2,
     width: 160,

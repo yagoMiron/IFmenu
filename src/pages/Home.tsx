@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import InputText from "../components/InputText";
 import { useState } from "react";
+import Header from "../components/Header";
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
 const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 
@@ -18,6 +19,7 @@ const Home = () => {
       resizeMode="repeat"
       style={styles.container}
     >
+      <Header mode={mode} setMode={setMode} />
       <View style={styles.main}>
         <Text style={styles.text}>Seja bem vindo, Aderbal!</Text>
       </View>
@@ -31,9 +33,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     height: "100%",
-    backgroundColor: "#a3a3ff",
     alignItems: "center",
-    padding: 20,
   },
   main: {
     backgroundColor: "white",
@@ -47,6 +47,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     padding: 12,
     textAlign: "center",
-    color: "#591ec5",
+    color: "#31c51e",
   },
 });
