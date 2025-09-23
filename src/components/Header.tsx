@@ -1,6 +1,7 @@
 import { Image, StyleSheet, View } from "react-native";
 import ChangeThemeBtn from "./ChangeThemeBtn";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { Link } from "@react-navigation/native";
 const logo = require("../../assets/menu2.svg");
 
 type Props = {
@@ -16,11 +17,13 @@ const Header = ({ mode, setMode }: Props) => {
         backgroundColor: mode === "dark" ? "#616161" : "#ffffff",
       }}
     >
-      <SimpleLineIcons
-        name="logout"
-        size={28}
-        color={mode === "dark" ? "#f0f0f0" : "#0f0f0f"}
-      />
+      <Link screen={"Login"} params={{}}>
+        <SimpleLineIcons
+          name="logout"
+          size={28}
+          color={mode === "dark" ? "#f0f0f0" : "#0f0f0f"}
+        />
+      </Link>
       <View
         style={{
           ...styles.logo,
