@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import InputText from "../components/InputText";
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import ChangeThemeBtn from "../components/ChangeThemeBtn";
+import Colors from "../enums/colors";
 const logo = require("../../assets/menu2.svg");
 const google = require("../../assets/google.png");
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
@@ -28,13 +28,13 @@ const TelaInicial = () => {
       <View
         style={{
           ...styles.main,
-          backgroundColor: mode === "dark" ? "#616161" : "#ffffff",
+          backgroundColor: mode === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
         }}
       >
         <View
           style={{
             ...styles.logo,
-            backgroundColor: mode === "dark" ? "#616161" : "#ffffff",
+            backgroundColor: mode === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
           }}
         >
           <Image source={logo} />
@@ -44,12 +44,12 @@ const TelaInicial = () => {
             <Entypo
               name="dot-single"
               size={42}
-              color={mode === "dark" ? "#f0f0f0" : "#52cc62"}
+              color={mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT}
             />
             <Text
               style={{
                 ...styles.title,
-                color: mode === "dark" ? "#f0f0f0" : "#52cc62",
+                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT
               }}
             >
               Bem Vindo ao IFmenu!
@@ -59,18 +59,18 @@ const TelaInicial = () => {
             <Entypo
               name="dot-single"
               size={42}
-              color={mode === "dark" ? "#f0f0f0" : "#52cc62"}
+              color={mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT}
             />
             <Text
               style={{
                 ...styles.subtitle,
-                color: mode === "dark" ? "#f0f0f0" : "#52cc62",
+                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
               }}
             >
               Faça login usando o seu{" "}
               <Text
                 style={{
-                  color: mode === "dark" ? "#52cc62" : "#C8191E",
+                  color: mode === "dark" ? Colors.FONT_EMPHASIS_1 : Colors.FONT_EMPHASIS_2,
                 }}
               >
                 e-mail Institucional
@@ -91,7 +91,7 @@ const TelaInicial = () => {
             style={{
               flex: 1,
               height: 3,
-              backgroundColor: mode === "dark" ? "#f0f0f0" : "#52cc62",
+              backgroundColor: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
             }}
           />
           <View>
@@ -101,7 +101,7 @@ const TelaInicial = () => {
                 textAlign: "center",
                 fontSize: 20,
                 fontWeight: "bold",
-                color: mode === "dark" ? "#f0f0f0" : "#52cc62",
+                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
               }}
             >
               Login
@@ -111,7 +111,7 @@ const TelaInicial = () => {
             style={{
               flex: 1,
               height: 3,
-              backgroundColor: mode === "dark" ? "#f0f0f0" : "#52cc62",
+              backgroundColor: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
             }}
           />
         </View>
