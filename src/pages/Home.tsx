@@ -5,13 +5,24 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import InputText from "../components/InputText";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "../components/Header";
+import { UserContext } from "../context/UserContext";
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
 const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 
 const Home = () => {
+  const {
+    theme,
+    setAuthTime,
+    setExp,
+    setName,
+    setEmail,
+    setPhotoURL,
+    isSessionValid,
+    setTheme
+  } = useContext(UserContext);
+
   const [mode, setMode] = useState("dark");
   return (
     <ImageBackground
