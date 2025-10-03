@@ -41,15 +41,16 @@ export default Header;
 
 const styles = StyleSheet.create({
   header: {
+    position: "relative",
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
     height: 73,
-    marginBottom: 80,
     alignItems: "center",
     padding: 20,
     borderBottomWidth: 2,
     borderColor: "#666",
+    zIndex: 2,
   },
   logo: {
     borderRadius: "50%",
@@ -64,5 +65,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 2,
     width: 160,
+    zIndex: 3,
   },
 });
