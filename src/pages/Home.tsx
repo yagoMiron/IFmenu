@@ -10,19 +10,12 @@ import { useContext, useState } from "react";
 import Header from "../components/Header";
 import { UserContext } from "../context/UserContext";
 import Colors from "../enums/colors";
+import RateBtn from "../components/RateBtn";
+import Separator from "../components/Separator";
+import { FontAwesome } from "@expo/vector-icons";
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
 const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 const dishe = require("../../assets/strogonof.jpg");
-const cryEmogi = require("../../assets/cry.svg");
-const cryGif = require("../../assets/cry.webp");
-const sadEmogi = require("../../assets/sad.svg");
-const sadGif = require("../../assets/sad.webp");
-const neutralEmogi = require("../../assets/neutral.svg");
-const neutralGif = require("../../assets/neutral.webp");
-const smileEmogi = require("../../assets/smile.svg");
-const smileGif = require("../../assets/smile.webp");
-const happyEmogi = require("../../assets/happy.svg");
-const happyGif = require("../../assets/happy.webp");
 
 const Home = () => {
   const {
@@ -38,6 +31,7 @@ const Home = () => {
 
   const [mode, setMode] = useState(theme);
   const [avaliacao, setAvaliacao] = useState(0);
+  const [fav, setFav] = useState(false);
   return (
     <ImageBackground
       source={mode === "dark" ? backgroundDark : backgroundLight}
@@ -52,11 +46,20 @@ const Home = () => {
             backgroundColor: mode === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
           }}
         >
-          <Image
-            source={dishe}
-            style={styles.disheImg}
-            resizeMode="cover"
-          ></Image>
+          <Image source={dishe} style={styles.disheImg} resizeMode="cover" />
+          <TouchableOpacity
+            style={styles.fav_btn}
+            onPress={() => {
+              setFav(!fav);
+            }}
+          >
+            {avaliacao > 3 &&
+              (fav ? (
+                <FontAwesome name="star" size={32} color="#ffef15" />
+              ) : (
+                <FontAwesome name="star-o" size={32} color="#ffef15" />
+              ))}
+          </TouchableOpacity>
           <Text
             style={{
               ...styles.dishe_title,
@@ -73,67 +76,38 @@ const Home = () => {
           >
             Acompanhamentos: Strogonof de frango, batata palha e arroz branco
           </Text>
+          <Separator mode={mode} title="Avalie o Prato!" />
           <View style={styles.rating_section}>
-            <TouchableOpacity
-              style={styles.ratingBtn}
-              onPress={() => {
-                setAvaliacao(1);
-              }}
-            >
-              <Image
-                style={styles.rating_img}
-                resizeMode="contain"
-                source={avaliacao === 1 ? cryGif : cryEmogi}
-              ></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.ratingBtn}
-              onPress={() => {
-                setAvaliacao(2);
-              }}
-            >
-              <Image
-                style={styles.rating_img}
-                resizeMode="contain"
-                source={avaliacao === 2 ? sadGif : sadEmogi}
-              ></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.ratingBtn}
-              onPress={() => {
-                setAvaliacao(3);
-              }}
-            >
-              <Image
-                style={styles.rating_img}
-                resizeMode="contain"
-                source={avaliacao === 3 ? neutralGif : neutralEmogi}
-              ></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.ratingBtn}
-              onPress={() => {
-                setAvaliacao(4);
-              }}
-            >
-              <Image
-                style={styles.rating_img}
-                resizeMode="contain"
-                source={avaliacao === 4 ? smileGif : smileEmogi}
-              ></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.ratingBtn}
-              onPress={() => {
-                setAvaliacao(5);
-              }}
-            >
-              <Image
-                style={styles.rating_img}
-                resizeMode="contain"
-                source={avaliacao === 5 ? happyGif : happyEmogi}
-              ></Image>
-            </TouchableOpacity>
+            <RateBtn
+              emogiValue={1}
+              rate={avaliacao}
+              setAvaliacao={setAvaliacao}
+              mode={mode}
+            />
+            <RateBtn
+              emogiValue={2}
+              rate={avaliacao}
+              setAvaliacao={setAvaliacao}
+              mode={mode}
+            />
+            <RateBtn
+              emogiValue={3}
+              rate={avaliacao}
+              setAvaliacao={setAvaliacao}
+              mode={mode}
+            />
+            <RateBtn
+              emogiValue={4}
+              rate={avaliacao}
+              setAvaliacao={setAvaliacao}
+              mode={mode}
+            />
+            <RateBtn
+              emogiValue={5}
+              rate={avaliacao}
+              setAvaliacao={setAvaliacao}
+              mode={mode}
+            />
           </View>
         </View>
       </View>
@@ -166,13 +140,14 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     borderBottomWidth: 4,
     borderEndWidth: 4,
-    width: "100%",
-    maxHeight: 700,
+    borderColor: "#00000097",
+    width: "90%",
     maxWidth: 600,
+    alignItems: "center",
   },
   disheImg: {
-    borderTopStartRadius: 40,
-    borderTopEndRadius: 40,
+    borderTopStartRadius: 38,
+    borderTopEndRadius: 38,
     width: "100%",
     height: 400,
   },
@@ -181,6 +156,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     padding: 20,
     paddingVertical: 10,
+    width: "100%",
   },
   dishe_description: {
     fontSize: 20,
@@ -189,14 +165,13 @@ const styles = StyleSheet.create({
   },
   rating_section: {
     flexDirection: "row",
-    padding: 20,
+    width: "84%",
+    paddingBottom: 20,
     alignItems: "center",
   },
-  ratingBtn: {
-    flex: 1,
-  },
-  rating_img: {
-    width: 90,
-    height: 90,
+  fav_btn: {
+    position: "absolute",
+    top: 20,
+    right: 20,
   },
 });

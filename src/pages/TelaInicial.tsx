@@ -11,6 +11,7 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import ChangeThemeBtn from "../components/ChangeThemeBtn";
 import Colors from "../enums/colors";
+import Separator from "../components/Separator";
 const logo = require("../../assets/menu2.svg");
 const google = require("../../assets/google.png");
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
@@ -49,7 +50,7 @@ const TelaInicial = () => {
             <Text
               style={{
                 ...styles.title,
-                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT
+                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
               }}
             >
               Bem Vindo ao IFmenu!
@@ -70,7 +71,10 @@ const TelaInicial = () => {
               Faça login usando o seu{" "}
               <Text
                 style={{
-                  color: mode === "dark" ? Colors.FONT_EMPHASIS_1 : Colors.FONT_EMPHASIS_2,
+                  color:
+                    mode === "dark"
+                      ? Colors.FONT_EMPHASIS_1
+                      : Colors.FONT_EMPHASIS_2,
                 }}
               >
                 e-mail Institucional
@@ -79,42 +83,7 @@ const TelaInicial = () => {
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            width: "84%",
-            marginTop: "auto",
-          }}
-        >
-          <View
-            style={{
-              flex: 1,
-              height: 3,
-              backgroundColor: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
-            }}
-          />
-          <View>
-            <Text
-              style={{
-                width: 70,
-                textAlign: "center",
-                fontSize: 20,
-                fontWeight: "bold",
-                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
-              }}
-            >
-              Login
-            </Text>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              height: 3,
-              backgroundColor: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
-            }}
-          />
-        </View>
+        <Separator title="Login" mode={mode} />
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
@@ -171,13 +140,6 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     borderRadius: 20,
     minHeight: "50%",
-    shadowColor: "#1f1f1f",
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 8,
   },
   titlebox: {
     alignItems: "center",
