@@ -2,15 +2,17 @@ import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Reactions from "../enums/reactions";
 import Animated from "react-native-reanimated";
 import Colors from "../enums/colors";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 type Props = {
   emogiValue: number;
   rate: number;
   setAvaliacao: (value: React.SetStateAction<number>) => void;
-  mode: string;
 };
 
-const RateBtn = ({ emogiValue, rate, setAvaliacao, mode }: Props) => {
+const RateBtn = ({ emogiValue, rate, setAvaliacao }: Props) => {
+  const { theme } = useContext(UserContext);
   const retornaImg = (value: number) => {
     switch (value) {
       case 1:
@@ -89,7 +91,7 @@ const RateBtn = ({ emogiValue, rate, setAvaliacao, mode }: Props) => {
       <Text
         style={{
           ...styles.title,
-          color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
+          color: theme === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
         }}
       >
         {retornaTitle(emogiValue)}
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
   },
   rating_img: {
     maxWidth: 200,
+    minHeight: 90,
     maxHeight: 200,
     width: "100%",
     height: "100%",

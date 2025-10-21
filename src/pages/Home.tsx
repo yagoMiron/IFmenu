@@ -12,103 +12,75 @@ import { UserContext } from "../context/UserContext";
 import Colors from "../enums/colors";
 import RateBtn from "../components/RateBtn";
 import Separator from "../components/Separator";
-import { FontAwesome } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import { Link } from "@react-navigation/native";
+import Advice from "../components/Advice";
+import Balloon from "../components/Balloon";
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
 const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 const dishe = require("../../assets/strogonof.jpg");
 
 const Home = () => {
-  const {
-    theme,
-    setAuthTime,
-    setExp,
-    setName,
-    setEmail,
-    setPhotoURL,
-    isSessionValid,
-    setTheme,
-  } = useContext(UserContext);
-
-  const [mode, setMode] = useState(theme);
+  const { theme } = useContext(UserContext);
   const [avaliacao, setAvaliacao] = useState(0);
   const [fav, setFav] = useState(false);
+
+  const backgroundColor = theme === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT;
+  const fontColor = theme === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT;
   return (
     <ImageBackground
-      source={mode === "dark" ? backgroundDark : backgroundLight}
+      source={theme === "dark" ? backgroundDark : backgroundLight}
       resizeMode="repeat"
       style={styles.container}
     >
-      <Header mode={mode} setMode={setMode} />
+      <Header />
       <View style={styles.main}>
-        <View
-          style={{
-            ...styles.pratoDoDia,
-            backgroundColor: mode === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
-          }}
-        >
-          <Image source={dishe} style={styles.disheImg} resizeMode="cover" />
-          <TouchableOpacity
-            style={styles.fav_btn}
-            onPress={() => {
-              setFav(!fav);
-            }}
-          >
-            {avaliacao > 3 &&
-              (fav ? (
-                <FontAwesome name="star" size={32} color="#ffef15" />
-              ) : (
-                <FontAwesome name="star-o" size={32} color="#ffef15" />
-              ))}
-          </TouchableOpacity>
-          <Text
-            style={{
-              ...styles.dishe_title,
-              color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
-            }}
-          >
-            Strogonof
-          </Text>
-          <Text
-            style={{
-              ...styles.dishe_description,
-              color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
-            }}
-          >
-            Acompanhamentos: Strogonof de frango, batata palha e arroz branco
-          </Text>
-          <Separator mode={mode} title="Avalie o Prato!" />
-          <View style={styles.rating_section}>
-            <RateBtn
-              emogiValue={1}
-              rate={avaliacao}
-              setAvaliacao={setAvaliacao}
-              mode={mode}
-            />
-            <RateBtn
-              emogiValue={2}
-              rate={avaliacao}
-              setAvaliacao={setAvaliacao}
-              mode={mode}
-            />
-            <RateBtn
-              emogiValue={3}
-              rate={avaliacao}
-              setAvaliacao={setAvaliacao}
-              mode={mode}
-            />
-            <RateBtn
-              emogiValue={4}
-              rate={avaliacao}
-              setAvaliacao={setAvaliacao}
-              mode={mode}
-            />
-            <RateBtn
-              emogiValue={5}
-              rate={avaliacao}
-              setAvaliacao={setAvaliacao}
-              mode={mode}
-            />
-          </View>
+        <View style={styles.section}>
+          <Advice
+            message="AVISO: Do dia 04 ao dia 15 desse mes estarão suspensas as merendas
+            escolares por divos de _______"
+            severity="Critica"
+          />
+          <Link screen={"Plate"} params={{}}>
+            <Balloon direction="right">
+              <View style={styles.innerBalloon}>
+                <MaterialCommunityIcons
+                  name="silverware-fork-knife"
+                  size={36}
+                  color={"#5f5f5f"}
+                />
+                <Text>
+                  Já experimentou o prato de hoje? Avalie a merenda aqui.
+                </Text>
+              </View>
+            </Balloon>
+          </Link>
+          <Link screen={"Plate"} params={{}}>
+            <Balloon>
+              <View style={styles.innerBalloon}>
+                <Text>
+                  Quer saber o prato de amanhã? Confira os pratos da semana
+                  aqui.
+                </Text>
+                <FontAwesome name="calendar" size={36} color={"#5f5f5f"} />
+              </View>
+            </Balloon>
+          </Link>
+          <Link screen={"Plate"} params={{}}>
+            <Balloon direction="right">
+              <View style={styles.innerBalloon}>
+                <AntDesign name="star" size={36} color={"#5f5f5f"} />
+                <Text>
+                  Quer saber o prato de amanhã? Confira os pratos da semana
+                  aqui.
+                </Text>
+              </View>
+            </Balloon>
+          </Link>
         </View>
       </View>
     </ImageBackground>
@@ -123,10 +95,14 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
   },
+  section: {
+    maxWidth: 800,
+  },
   main: {
     width: "100%",
+    flex: 1,
     paddingVertical: 40,
-    height: "100%",
+    marginTop: 20,
     alignItems: "center",
   },
   text: {
@@ -173,5 +149,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 20,
     right: 20,
+  },
+  innerBalloon: {
+    flexDirection: "row",
+    gap: 16,
+    alignItems: "center",
   },
 });

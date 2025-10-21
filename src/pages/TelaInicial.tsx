@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -12,67 +12,63 @@ import { Entypo } from "@expo/vector-icons";
 import ChangeThemeBtn from "../components/ChangeThemeBtn";
 import Colors from "../enums/colors";
 import Separator from "../components/Separator";
+import { UserContext } from "../context/UserContext";
 const logo = require("../../assets/menu2.svg");
 const google = require("../../assets/google.png");
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
 const backgroundDark = require("../../assets/backgroundpattern-dark.png");
 
 const TelaInicial = () => {
-  const [mode, setMode] = useState("dark");
+  const { theme } = useContext(UserContext);
   const navigation = useNavigation<any>();
+
+  const backgroundColor = theme === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT;
+  const fontColor = theme === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT;
   return (
     <ImageBackground
-      source={mode === "dark" ? backgroundDark : backgroundLight}
+      source={theme === "dark" ? backgroundDark : backgroundLight}
       resizeMode="repeat"
       style={styles.container}
     >
       <View
         style={{
           ...styles.main,
-          backgroundColor: mode === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
+          backgroundColor: backgroundColor,
         }}
       >
         <View
           style={{
             ...styles.logo,
-            backgroundColor: mode === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
+            backgroundColor: backgroundColor,
           }}
         >
           <Image source={logo} />
         </View>
         <View style={styles.offset}>
           <View style={styles.titlebox}>
-            <Entypo
-              name="dot-single"
-              size={42}
-              color={mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT}
-            />
+            <Entypo name="dot-single" size={42} color={fontColor} />
             <Text
               style={{
                 ...styles.title,
-                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
+                color: fontColor,
               }}
             >
               Bem Vindo ao IFmenu!
             </Text>
           </View>
           <View style={styles.titlebox}>
-            <Entypo
-              name="dot-single"
-              size={42}
-              color={mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT}
-            />
+            <Entypo name="dot-single" size={42} color={fontColor} />
             <Text
               style={{
                 ...styles.subtitle,
-                color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
+                color: fontColor,
               }}
             >
               Faça login usando o seu{" "}
               <Text
                 style={{
                   color:
-                    mode === "dark"
+                    theme === "dark"
                       ? Colors.FONT_EMPHASIS_1
                       : Colors.FONT_EMPHASIS_2,
                 }}
@@ -83,7 +79,7 @@ const TelaInicial = () => {
             </Text>
           </View>
         </View>
-        <Separator title="Login" mode={mode} />
+        <Separator title="Login" />
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
@@ -95,8 +91,6 @@ const TelaInicial = () => {
         </TouchableOpacity>
       </View>
       <ChangeThemeBtn
-        mode={mode}
-        setMode={setMode}
         extraStyles={{ position: "absolute", top: 10, right: 10 }}
       />
     </ImageBackground>

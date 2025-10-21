@@ -45,7 +45,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [photoURL, setPhotoURL] = useState<string>("");
-  const [theme, setTheme] = useState<string>("dark")
+  const [theme, setTheme] = useState<string>("dark");
 
   // Carrega dados do AsyncStorage ao iniciar
   useEffect(() => {
@@ -70,6 +70,9 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
             case "photoURL":
               setPhotoURL(value);
               break;
+            case "theme":
+              setTheme(value);
+              break;
           }
         }
       });
@@ -84,7 +87,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     AsyncStorage.setItem("name", name);
     AsyncStorage.setItem("email", email);
     AsyncStorage.setItem("photoURL", photoURL);
-    AsyncStorage.setItem("theme", theme)
+    AsyncStorage.setItem("theme", theme);
   }, [authTime, exp, name, email, photoURL, theme]);
 
   return (

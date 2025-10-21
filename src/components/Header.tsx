@@ -2,37 +2,37 @@ import { Image, StyleSheet, View } from "react-native";
 import ChangeThemeBtn from "./ChangeThemeBtn";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { Link } from "@react-navigation/native";
+import Colors from "../enums/colors";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 const logo = require("../../assets/menu2.svg");
 
-type Props = {
-  mode: string;
-  setMode: (mode: string) => void;
-};
+const Header = () => {
+  const { theme } = useContext(UserContext);
 
-const Header = ({ mode, setMode }: Props) => {
   return (
     <View
       style={{
         ...styles.header,
-        backgroundColor: mode === "dark" ? "#616161" : "#ffffff",
+        backgroundColor: theme === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
       }}
     >
       <Link screen={"Login"} params={{}}>
         <SimpleLineIcons
           name="logout"
           size={28}
-          color={mode === "dark" ? "#f0f0f0" : "#0f0f0f"}
+          color={theme === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT}
         />
       </Link>
       <View
         style={{
           ...styles.logo,
-          backgroundColor: mode === "dark" ? "#616161" : "#ffffff",
+          backgroundColor: theme === "dark" ? Colors.BG_DARK : Colors.BG_LIGHT,
         }}
       >
         <Image source={logo} />
       </View>
-      <ChangeThemeBtn mode={mode} setMode={setMode} />
+      <ChangeThemeBtn />
     </View>
   );
 };

@@ -1,12 +1,15 @@
 import { Text, View } from "react-native";
 import Colors from "../enums/colors";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
 
 type Props = {
   title: string;
-  mode: string;
 };
 
-const Separator = ({ mode, title }: Props) => {
+const Separator = ({ title }: Props) => {
+  const { theme } = useContext(UserContext);
+  const fontColor = theme === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT;
   return (
     <View
       style={{
@@ -20,8 +23,7 @@ const Separator = ({ mode, title }: Props) => {
         style={{
           flex: 1,
           height: 3,
-          backgroundColor:
-            mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
+          backgroundColor: fontColor,
         }}
       />
       <View>
@@ -31,7 +33,7 @@ const Separator = ({ mode, title }: Props) => {
             textAlign: "center",
             fontSize: 20,
             fontWeight: "bold",
-            color: mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
+            color: fontColor,
           }}
         >
           {title}
@@ -41,8 +43,7 @@ const Separator = ({ mode, title }: Props) => {
         style={{
           flex: 1,
           height: 3,
-          backgroundColor:
-            mode === "dark" ? Colors.FONT_DARK : Colors.FONT_LIGHT,
+          backgroundColor: fontColor,
         }}
       />
     </View>
