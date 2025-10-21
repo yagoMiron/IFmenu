@@ -1,6 +1,7 @@
 import {
   Image,
   ImageBackground,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -31,6 +32,7 @@ const Plate = () => {
       style={styles.container}
     >
       <Header />
+      <ScrollView style={{width:"100%"}} showsVerticalScrollIndicator={false}>
       <View style={styles.main}>
         <View
           style={{
@@ -97,7 +99,8 @@ const Plate = () => {
             />
           </View>
         </View>
-      </View>
+        </View>
+      </ScrollView>
     </ImageBackground>
   );
 };

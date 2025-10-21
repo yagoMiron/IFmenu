@@ -1,6 +1,7 @@
 import {
   Image,
   ImageBackground,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -38,6 +39,7 @@ const Home = () => {
       style={styles.container}
     >
       <Header />
+      <ScrollView style={{width:"100%"}} showsVerticalScrollIndicator={false}>
       <View style={styles.main}>
         <View style={styles.section}>
           <Advice
@@ -82,7 +84,7 @@ const Home = () => {
             </Balloon>
           </Link>
         </View>
-      </View>
+      </View></ScrollView>
     </ImageBackground>
   );
 };

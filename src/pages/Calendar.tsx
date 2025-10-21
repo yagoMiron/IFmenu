@@ -33,9 +33,16 @@ const Calendar = () => {
       style={styles.container}
     >
       <Header />
-      <View style={styles.main}>
-        <WeekCalendar />
-      </View>
+      <ScrollView
+        style={{ width: "100%" }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.main}>
+          <View style={{ ...styles.section, backgroundColor: "#333" }}>
+            <WeekCalendar />
+          </View>
+        </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -48,15 +55,19 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
   },
-  section: {
-    width: "100%",
-  },
   main: {
-    width: "100%",
     flex: 1,
     paddingVertical: 40,
-    marginTop: 20,
     alignItems: "center",
+    width: "100%",
+  },
+  section: {
+    width: "90%",
+    maxWidth: 600,
+    borderRadius: 40,
+    borderBottomWidth: 4,
+    borderEndWidth: 4,
+    borderColor: "#00000097",
   },
   text: {
     fontWeight: "bold",

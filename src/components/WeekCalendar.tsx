@@ -1,52 +1,48 @@
-import { FlatList, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
+const dishe = require("../../assets/strogonof.jpg");
 const data = [
   {
     dia: new Date("2025-10-19T03:24:00"),
     seraServido: false,
-    prato: "",
-    descricao: "",
+    nome: "-",
   },
   {
     dia: new Date("2025-10-20T03:24:00"),
     seraServido: true,
-    prato: "Strogonof",
-    descricao:
-      "Acompanhamentos: Strogonof de frango, batata palha e arroz branco",
+    nome: "Strogonof",
   },
   {
     dia: new Date("2025-10-21T03:24:00"),
     seraServido: true,
-    prato: "Strogonof",
-    descricao:
-      "Acompanhamentos: Strogonof de frango, batata palha e arroz branco",
+    nome: "Strogonof",
   },
   {
     dia: new Date("2025-10-22T03:24:00"),
     seraServido: true,
-    prato: "Strogonof",
-    descricao:
-      "Acompanhamentos: Strogonof de frango, batata palha e arroz branco",
+    nome: "Strogonof",
   },
   {
     dia: new Date("2025-10-23T03:24:00"),
     seraServido: true,
-    prato: "Strogonof",
-    descricao:
-      "Acompanhamentos: Strogonof de frango, batata palha e arroz branco",
+    nome: "Strogonof",
   },
   {
     dia: new Date("2025-10-24T03:24:00"),
     seraServido: true,
-    prato: "Strogonof",
-    descricao:
-      "Acompanhamentos: Strogonof de frango, batata palha e arroz branco",
+    nome: "Strogonof",
   },
   {
     dia: new Date("2025-10-25T03:24:00"),
     seraServido: false,
-    prato: "",
-    descricao: "",
+    nome: "-",
   },
 ];
 
@@ -77,12 +73,11 @@ const WeekCalendar = () => {
     item: {
       dia: Date;
       seraServido: boolean;
-      prato: string;
-      descricao: string;
+      nome: string;
     };
   }) => (
-    <View style={{ flexDirection: "row" }}>
-      <View style={{ width: 80, backgroundColor: "lightyellow" }}>
+    <View style={styles.weekRow}>
+      <View style={styles.dayCollum}>
         <Text style={{ fontSize: 32, fontWeight: "bold", textAlign: "center" }}>
           {item.dia.getDate()}
         </Text>
@@ -90,55 +85,68 @@ const WeekCalendar = () => {
           {getDayName(item.dia.getDay())}
         </Text>
       </View>
-      <View style={{ width: 400, backgroundColor: "lightpink" }}>
+      <View style={styles.titleCollum}>
         <Text style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}>
-          {item.prato}
+          {item.nome}
         </Text>
       </View>
-      <View style={{ width: 400, backgroundColor: "lavender" }}>
-        <Text style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}>
-          {item.descricao}
-        </Text>
+      <View style={styles.disheCollum}>
+        {item.seraServido ? (
+          <Image source={dishe} style={styles.disheImg} resizeMode="cover" />
+        ) : (
+          <Text
+            style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}
+          >
+            -
+          </Text>
+        )}
       </View>
     </View>
   );
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <View style={{ flexDirection: "row" }}>
-        <View style={{ backgroundColor: "lightyellow" }}>
+    <View style={styles.main}>
+      <View style={styles.header}>
+        <View style={styles.dayCollum}>
           <Text
             style={{
               width: 80,
               fontSize: 32,
               fontWeight: "bold",
               textAlign: "center",
+              color: "#f0f0f0",
             }}
           >
             DIA
           </Text>
         </View>
-        <View style={{ width: 400, backgroundColor: "lightpink" }}>
+
+        <View style={styles.titleCollum}>
           <Text
-            style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              textAlign: "center",
+              color: "#f0f0f0",
+            }}
           >
-            Prato
+            NOME
           </Text>
         </View>
-        <View style={{ width: 400, backgroundColor: "lavender" }}>
+        <View style={styles.disheCollum}>
           <Text
-            style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              textAlign: "center",
+              color: "#f0f0f0",
+            }}
           >
-            Descrição
+            PRATO
           </Text>
         </View>
       </View>
       <FlatList
+        style={{ width: "100%", backgroundColor: "#ccc" }}
         data={data}
         renderItem={item}
         keyExtractor={(item) => item.dia.getDay().toString()}
@@ -148,3 +156,41 @@ const WeekCalendar = () => {
 };
 
 export default WeekCalendar;
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 40,
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    padding: 10,
+  },
+  dayCollum: {
+    width: 80,
+  },
+  disheCollum: {
+    flex: 1,
+  },
+  disheImg: {
+    width: "100%",
+    height: 120,
+    borderRadius: 10,
+  },
+  titleCollum: {
+    flex: 1,
+  },
+  weekRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    padding: 10,
+  },
+});
