@@ -1,6 +1,5 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Reactions from "../enums/reactions";
-import Animated from "react-native-reanimated";
 import Colors from "../enums/colors";
 import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
@@ -56,10 +55,8 @@ const RateBtn = ({ emogiValue, rate, setAvaliacao }: Props) => {
     }
   };
   return (
-    <Animated.View
+    <View
       style={{
-        transitionProperty: ["width", "height"],
-        transitionDuration: 6000,
         alignItems: "center",
         height: "100%",
         flex: 1,
@@ -96,7 +93,7 @@ const RateBtn = ({ emogiValue, rate, setAvaliacao }: Props) => {
       >
         {retornaTitle(emogiValue)}
       </Text>
-    </Animated.View>
+    </View>
   );
 };
 export default RateBtn;

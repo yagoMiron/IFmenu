@@ -12,9 +12,6 @@ import { useContext, useState } from "react";
 import Header from "../components/Header";
 import { UserContext } from "../context/UserContext";
 import Colors from "../enums/colors";
-import RateBtn from "../components/RateBtn";
-import Separator from "../components/Separator";
-import { Link } from "@react-navigation/native";
 import WeekCalendar from "../components/WeekCalendar";
 const backgroundLight = require("../../assets/backgroundpattern-light.png");
 const backgroundDark = require("../../assets/backgroundpattern-dark.png");
@@ -35,7 +32,6 @@ const Calendar = () => {
       <Header />
       <ScrollView
         style={{ width: "100%" }}
-        showsVerticalScrollIndicator={false}
       >
         <View style={styles.main}>
           <View style={{ ...styles.section, backgroundColor: "#333" }}>
