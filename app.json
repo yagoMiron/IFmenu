@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "navegacao",
-    "slug": "navegacao",
+    "name": "IFmenu",
+    "slug": "IFmenu",
     "version": "1.0.0",
     "orientation": "portrait",
     "plugins": [
@@ -22,14 +22,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.navegacao"
+      "bundleIdentifier": "com.anonymous.IFmenu"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/favicon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.navegacao"
+      "package": "com.anonymous.IFmenu"
     },
     "web": {
       "favicon": "./assets/favicon.png"
