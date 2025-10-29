@@ -1,6 +1,8 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
+// Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGRjNTVlM2M1NzRjMjg0YWRhMGM4MzAiLCJpYXQiOjE3NjE2OTY2OTcsImV4cCI6MTc2MjMwMTQ5N30.9oXlbpyzSERZkN4dxXCRYMCWVf8U_AB0CfsV_D5dtxw
 type UserType = {
   authTime: number;
   exp: number;
